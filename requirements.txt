@@ -1,0 +1,4 @@
+aiohttp~=3.8.4
+requests~=2.29.0
+vkbottle~=4.3.12
+environs~=9.5.0
