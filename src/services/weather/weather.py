@@ -2,6 +2,8 @@ import datetime
 import json
 import requests
 
+from src.config import weather_token
+
 
 class Weather:
     def __init__(self, city: str, tomorrow: bool = False):
