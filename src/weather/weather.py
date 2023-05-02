@@ -7,7 +7,7 @@ class Weather:
     def __init__(self, city: str, tomorrow: bool = False):
         self.city = city
         self.tomorrow = tomorrow
-        self.API_WEATHER = 'b29c92a183cbfc7f65bd3a809c01a272'
+        self.API_WEATHER = '...'
 
     def get_message(self) -> str:
         rez = [f'Прогноз погоды {self.city} {"на сегодня" if not self.tomorrow else "на завтра"}:\n']
