@@ -7,3 +7,6 @@ class MenuStates(BaseStateGroup):
     edit_city = "edit_city"
     menu = "menu"
     weather_day = "weather_day"
+    afisha_day = 'afisha_day'
+    setting_edit_city = "setting_edit_city"
+    setting_confirm_city = "setting_confirm_city"

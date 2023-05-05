@@ -12,7 +12,7 @@ class Weather:
         self.API_WEATHER = weather_token
 
     def get_message(self) -> str:
-        rez = [f'Прогноз погоды {self.city} {"на сегодня" if not self.tomorrow else "на завтра"}:\n']
+        rez = [f'Прогноз погоды в городе {self.city} {"на сегодня" if not self.tomorrow else "на завтра"}:\n']
         USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) Gecko/20100101 Firefox/65.0"
         headers = {"user-agent": USER_AGENT}
         response = requests.get(
@@ -26,6 +26,8 @@ class Weather:
                     type_ = '☁️'
                 elif type_ == 'Rain':
                     type_ = '🌧'
+                elif type_ == 'Clear':
+                    type_ = "☀️"
 
                 time_ = time['dt_txt'].split(' ')[1]
                 wind_ = str(time['wind']['speed']) + 'м/с'
