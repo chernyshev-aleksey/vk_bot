@@ -19,21 +19,26 @@ class Weather:
             f'https://api.openweathermap.org/data/2.5/forecast?q={self.city}&APPID={self.API_WEATHER}&units=metric&lang=ru',
             headers=headers)
         result = json.loads(response.text)
-        for time in result['list']:
-            if time['dt_txt'].split(' ')[0] == (datetime.datetime.today() + datetime.timedelta(days=(1 if self.tomorrow else 0))).strftime('%Y-%m-%d'):
-                type_ = time['weather'][0]['main']
-                if type_ == 'Clouds':
-                    type_ = '☁️'
-                elif type_ == 'Rain':
-                    type_ = '🌧'
-                elif type_ == 'Clear':
-                    type_ = "☀️"
+        try:
+            for time in result['list']:
+                if time['dt_txt'].split(' ')[0] == (datetime.datetime.today() + datetime.timedelta(
+                        days=(1 if self.tomorrow else 0))).strftime('%Y-%m-%d'):
+                    type_ = time['weather'][0]['main']
+                    if type_ == 'Clouds':
+                        type_ = '☁️'
+                    elif type_ == 'Rain':
+                        type_ = '🌧'
+                    elif type_ == 'Clear':
+                        type_ = "☀️"
 
-                time_ = time['dt_txt'].split(' ')[1]
-                wind_ = str(time['wind']['speed']) + 'м/с'
-                humidity_ = str(time['main']['humidity']) + '%'
-                temp_ = str(time['main']['temp']) + '°C'
+                    time_ = time['dt_txt'].split(' ')[1]
+                    wind_ = str(time['wind']['speed']) + 'м/с'
+                    humidity_ = str(time['main']['humidity']) + '%'
+                    temp_ = str(time['main']['temp']) + '°C'
 
-                rez.append(f"{time_[:-3]}{type_} {temp_} {wind_} {humidity_}")
+                    rez.append(f"{time_[:-3]}{type_} {temp_} {wind_} {humidity_}")
 
-        return '\n'.join(rez)
+                    return '\n'.join(rez)
+        except KeyError:
+            return 'Погода для вашего города не найдена :('
+
